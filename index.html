@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Study Planner - 校园学习待办助手</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="navbar">
+    <div class="nav-title">📚 StudyPlanner 校园学习助手</div>
+    <nav class="nav-links">
+      <a href="#tasks-section">Tasks 待办</a>
+      <a href="#timer-section">Timer 番茄钟</a>
+      <a href="#note-section">Check-in 打卡</a>
+      <button id="theme-btn" class="btn btn-secondary btn-sm">🌙 Dark / Light</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- 统计卡片 -->
+    <section class="stats-row">
+      <div class="card">
+        <div class="stat-label">Total Tasks 总任务数</div>
+        <div id="stat-total" class="stat-num">0</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Completed 已完成</div>
+        <div id="stat-done" class="stat-num">0</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Pending 待完成</div>
+        <div id="stat-todo" class="stat-num">0</div>
+      </div>
+    </section>
+
+    <!-- 主体两栏 -->
+    <div class="main-grid">
+      <!-- 左栏：待办事项 CRUD -->
+      <section id="tasks-section" class="card">
+        <h2>📝 Course To-Do List (课程待办列表)</h2>
+        <form id="task-form" class="task-form">
+          <select id="course-select">
+            <option value="Web">Web 编程</option>
+            <option value="SE">软件工程</option>
+            <option value="CS">计算机系统</option>
+            <option value="Other">其他日常</option>
+          </select>
+          <input id="task-input" type="text" placeholder="Add a new homework or task... 输入待办事项" />
+          <button type="submit" class="btn">Add 添加</button>
+        </form>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All 全部</button>
+          <button class="filter-btn" data-filter="todo">Pending 未完成</button>
+          <button class="filter-btn" data-filter="done">Done 已完成</button>
+        </div>
+
+        <ul id="task-list" class="task-list"></ul>
+      </section>
+
+      <!-- 右栏：番茄钟 + AJAX 每日格言 -->
+      <div>
+        <section id="timer-section" class="card">
+          <h2>⏱️ Pomodoro Timer (25分钟自习钟)</h2>
+          <div class="timer-box">
+            <div id="timer-display" class="timer-display">25:00</div>
+            <div class="timer-btns">
+              <button id="timer-start" class="btn">Start 开始</button>
+              <button id="timer-pause" class="btn btn-secondary">Pause 暂停</button>
+              <button id="timer-reset" class="btn btn-secondary">Reset 重置</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card quote-box">
+          <h2>💡 Daily Quote (AJAX 异步格言)</h2>
+          <p id="quote-text" class="quote-text">Loading...</p>
+          <p id="quote-author" class="quote-author"></p>
+          <button id="btn-new-quote" class="btn btn-sm">Refresh 换一句 (AJAX)</button>
+        </section>
+      </div>
+    </div>
+
+    <!-- 底部简单表单验证 -->
+    <section id="note-section" class="card">
+      <h2>✍️ Daily Study Check-in (自习打卡留言)</h2>
+      <form id="note-form" class="feedback-form">
+        <input id="stu-name" type="text" placeholder="Your Name / Student ID (姓名或学号)" />
+        <textarea id="stu-note" rows="3" placeholder="What did you study today? (今天学了什么？)"></textarea>
+        <div>
+          <button type="submit" class="btn">Submit 提交打卡</button>
+        </div>
+        <div id="form-msg" class="form-msg"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Web Programming Course Project &copy; 2026 | HTML + CSS + JavaScript + AJAX
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
